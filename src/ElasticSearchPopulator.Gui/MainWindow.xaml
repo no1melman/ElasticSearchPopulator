@@ -1,0 +1,72 @@
+﻿<Window x:Class="ElasticSearchPopulator.Gui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElasticSearchPopulator.Gui"
+        mc:Ignorable="d"
+        Title="ElasticSearch Populator" Height="450" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Parameters:"></TextBlock>
+            <Grid Margin="2, 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Text="No Records:"></TextBlock>
+                <TextBox  Grid.Column="1" Name="RecordTextBox" Text="1000"></TextBox>
+            </Grid>
+            <Grid Margin="2, 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Batch Size:"></TextBlock>
+                <TextBox  Grid.Column="1" Name="BatchTextBox" Text="1000"></TextBox>
+            </Grid>
+
+            <TextBlock Text="Actions:"></TextBlock>
+            <Button Name="CreateIndexDataButton" Margin="10" Click="CreateIndexDataButton_Click">
+                <Button.Content>Create Index</Button.Content>
+            </Button>
+            <Button Name="CreateMappingsDataButton" Margin="10" Click="CreateMappingsDataButton_Click">
+                <Button.Content>Create Mappings</Button.Content>
+            </Button>
+            <Button Name="PopulateDataButton" Click="PopulateDataButton_Click" Margin="10">
+                <Button.Content>Populate Data</Button.Content>
+            </Button>
+            <TextBlock Text="Danger Actions:" Foreground="Red"></TextBlock>
+            <Button Name="DeleteIndex" Margin="10" Click="DeleteIndex_Click">
+                <Button.Content>Delete Index</Button.Content>
+            </Button>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Send to: ElasticSearch" Name="SendToTextBox" VerticalAlignment="Center" Margin="2, 6, 2, 10"></TextBlock>
+                <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="20" Grid.Column="1" Width="50" Margin="0, 4, 0, 5" Checked="ToggleButton_Checked" Unchecked="ToggleButton_OnUnchecked"/>
+            </Grid>
+            
+            <ProgressBar Height="20" Margin="5" Visibility="Hidden" Name="ProgressBar"></ProgressBar>
+
+            <Button Name="TestLength" Content="Test Length" Margin="10" Click="TestLength_Click"></Button>
+            
+        </StackPanel>
+
+        <DockPanel Grid.Column="1">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                <TextBlock Name="OutputTextBlock" FontFamily="Consolas"></TextBlock>
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
+</Window>
